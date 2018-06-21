@@ -11,8 +11,8 @@ public class Permission {
 
     private String name;
 
-    @ManyToMany(mappedBy = "privileges")
-    private Collection<Role> roles;
+//    @ManyToMany(mappedBy = "permissions")
+//    private Collection<Role> roles;
 
     public Permission() {
     }
@@ -33,11 +33,11 @@ public class Permission {
         this.name = name;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
+//    public Collection<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(Collection<Role> roles) {
+//        this.roles = roles;
+//    }
 }

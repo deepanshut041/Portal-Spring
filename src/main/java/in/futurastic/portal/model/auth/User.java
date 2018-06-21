@@ -1,28 +1,44 @@
 package in.futurastic.portal.model.auth;
 
-import in.futurastic.portal.model.auth.Role;
-
 import javax.persistence.*;
-import java.util.Collection;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.Date;
+import java.util.List;
 
+@Entity
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
     private Long id;
-    private String username;
-    private String password;
-    private boolean enabled;
-    private boolean verified;
-    private boolean tokenExpired;
 
-    @ManyToMany
+    @Column(name = "USERNAME", length = 50, unique = true)
+    @NotNull
+    @Size(min = 4, max = 50)
+    private String username;
+
+    @Column(name = "PASSWORD", length = 100)
+    @NotNull
+    @Size(min = 4, max = 100)
+    private String password;
+
+    @Column(name = "ENABLED")
+    @NotNull
+    private Boolean enabled;
+
+    @Column(name = "LASTPASSWORDRESETDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastPasswordResetDate;
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
+            name = "USER_AUTHORITY",
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
+    private List<AuthorityModel> authorities;
+
 
     public User() {
     }
@@ -51,35 +67,28 @@ public class User {
         this.password = password;
     }
 
-    public boolean isEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
-    public boolean isVerified() {
-        return verified;
+    public List<AuthorityModel> getAuthorities() {
+        return authorities;
     }
 
-    public void setVerified(boolean verified) {
-        this.verified = verified;
+    public void setAuthorities(List<AuthorityModel> authorities) {
+        this.authorities = authorities;
     }
 
-    public boolean isTokenExpired() {
-        return tokenExpired;
+    public Date getLastPasswordResetDate() {
+        return lastPasswordResetDate;
     }
 
-    public void setTokenExpired(boolean tokenExpired) {
-        this.tokenExpired = tokenExpired;
+    public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+        this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
 }
