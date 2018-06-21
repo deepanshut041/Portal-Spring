@@ -1,10 +1,12 @@
 package in.futurastic.portal.model.profile;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Date;
 
+@Entity
 public class RegistrationProfileModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -7,7 +7,8 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class EnquiryProfileModel {
+public class StaffProfileModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -18,14 +19,16 @@ public class EnquiryProfileModel {
     private String motherName;
     private String city;
     private String gender;
-    private String currentAddress;
+    private String email;
+    private String tempAddress;
+    private String permAddress;
     private String currentQualification;
     private long aadharNumber;
     private int pin;
     private Date dateOfBirth;
-    private Date date;
+    private Date dateOfHiring;
 
-    public EnquiryProfileModel() {
+    public StaffProfileModel() {
     }
 
     public long getId() {
@@ -92,12 +95,28 @@ public class EnquiryProfileModel {
         this.gender = gender;
     }
 
-    public String getCurrentAddress() {
-        return currentAddress;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCurrentAddress(String currentAddress) {
-        this.currentAddress = currentAddress;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTempAddress() {
+        return tempAddress;
+    }
+
+    public void setTempAddress(String tempAddress) {
+        this.tempAddress = tempAddress;
+    }
+
+    public String getPermAddress() {
+        return permAddress;
+    }
+
+    public void setPermAddress(String permAddress) {
+        this.permAddress = permAddress;
     }
 
     public String getCurrentQualification() {
@@ -132,11 +151,11 @@ public class EnquiryProfileModel {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getDateOfHiring() {
+        return dateOfHiring;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateOfHiring(Date dateOfHiring) {
+        this.dateOfHiring = dateOfHiring;
     }
 }
