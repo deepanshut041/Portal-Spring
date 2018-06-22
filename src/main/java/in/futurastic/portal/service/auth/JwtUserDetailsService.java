@@ -1,8 +1,8 @@
-package in.futurastic.portal.service;
+package in.futurastic.portal.service.auth;
 
 import in.futurastic.portal.model.auth.User;
 import in.futurastic.portal.model.auth.UserFactory;
-import in.futurastic.portal.repository.UserRepository;
+import in.futurastic.portal.repository.auth.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

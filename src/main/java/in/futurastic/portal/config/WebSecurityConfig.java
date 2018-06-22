@@ -1,6 +1,6 @@
 package in.futurastic.portal.config;
 
-import in.futurastic.portal.service.JwtUserDetailsService;
+import in.futurastic.portal.service.auth.JwtUserDetailsService;
 import in.futurastic.portal.util.JwtAuthenticationEntryPoint;
 import in.futurastic.portal.util.JwtAuthorizationTokenFilter;
 import in.futurastic.portal.util.JwtTokenUtil;
@@ -74,7 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                 // Un-secure H2 Database
-                .antMatchers("/**").permitAll()
+                .antMatchers("/api/v1/auth/**").permitAll()
                 .anyRequest().authenticated();
 
         // Custom JWT based security filter

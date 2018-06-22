@@ -2,8 +2,8 @@ package in.futurastic.portal.controller;
 
 import in.futurastic.portal.model.auth.JwtUser;
 import in.futurastic.portal.model.auth.User;
-import in.futurastic.portal.service.JwtAuthenticationResponse;
-import in.futurastic.portal.service.UserService;
+import in.futurastic.portal.service.auth.JwtAuthenticationResponse;
+import in.futurastic.portal.service.auth.UserService;
 import in.futurastic.portal.util.AuthenticationException;
 import in.futurastic.portal.util.JwtAuthenticationRequest;
 import in.futurastic.portal.util.JwtTokenUtil;
@@ -26,6 +26,7 @@ import java.util.Objects;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/api/v1")
 public class AuthenticationRestController {
 
     @Value("${jwt.header}")

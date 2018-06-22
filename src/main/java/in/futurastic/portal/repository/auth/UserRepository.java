@@ -1,4 +1,4 @@
-package in.futurastic.portal.repository;
+package in.futurastic.portal.repository.auth;
 
 import in.futurastic.portal.model.auth.User;
 import org.springframework.data.jpa.repository.JpaRepository;

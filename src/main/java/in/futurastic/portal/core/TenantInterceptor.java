@@ -18,8 +18,8 @@ public class TenantInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-        String tenantId = request.getHeader(this.tenantHeader);
-        ThreadLocalStorage.setTenantName(tenantId);
+//        String tenantId = request.getHeader(this.tenantHeader);
+//        ThreadLocalStorage.setTenantName(tenantId);
         return true;
     }
     @Override

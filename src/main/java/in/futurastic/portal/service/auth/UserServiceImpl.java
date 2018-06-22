@@ -1,12 +1,12 @@
-package in.futurastic.portal.service;
+package in.futurastic.portal.service.auth;
 
 
 import in.futurastic.portal.model.auth.AuthorityModel;
 import in.futurastic.portal.model.auth.User;
-import in.futurastic.portal.repository.AuthorityRepository;
-import in.futurastic.portal.repository.UserRepository;
+import in.futurastic.portal.repository.auth.AuthorityRepository;
+import in.futurastic.portal.repository.auth.UserRepository;
+import in.futurastic.portal.service.auth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +33,7 @@ public class UserServiceImpl implements UserService {
             authorities.add(authority.get());
             user.setAuthorities(authorities);
         }
+        user.setLastPasswordResetDate(new Date());
         User user1 = userRepository.save(user);
         return user1;
     }

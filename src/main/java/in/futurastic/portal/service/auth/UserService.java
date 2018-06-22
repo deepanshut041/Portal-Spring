@@ -1,4 +1,4 @@
-package in.futurastic.portal.service;
+package in.futurastic.portal.service.auth;
 
 import in.futurastic.portal.model.auth.User;
 
