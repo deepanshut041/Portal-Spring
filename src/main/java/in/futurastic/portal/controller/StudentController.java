@@ -16,7 +16,7 @@ public class StudentController {
     @Autowired
     StudentProfileService studentProfileService;
 
-    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.POST)
     public StudentProfileModel createStudent(@RequestBody StudentProfileModel studentProfileModel){
         return studentProfileService.createStudentWithUser(studentProfileModel);
     }

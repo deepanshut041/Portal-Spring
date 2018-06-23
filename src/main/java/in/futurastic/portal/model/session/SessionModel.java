@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -11,8 +12,15 @@ public class SessionModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
     private Date startDate;
+
+    @NotNull
     private Date endDate;
+
+    @NotNull
+    private boolean status;
 
     public SessionModel() {
     }
@@ -39,5 +47,13 @@ public class SessionModel {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }
