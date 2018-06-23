@@ -1,9 +1,9 @@
-package in.futurastic.portal.service.auth;
+package in.futurastic.portal.service;
 
-import in.futurastic.portal.model.auth.AuthorityModel;
+import in.futurastic.portal.model.SchoolModel;
 import in.futurastic.portal.model.auth.JwtUser;
 import in.futurastic.portal.model.auth.User;
-import in.futurastic.portal.repository.auth.AuthorityRepository;
+import in.futurastic.portal.repository.SchoolRepository;
 import in.futurastic.portal.repository.auth.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,22 +13,38 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service("authorityService")
-public class AuthorityServiceImpl implements AuthorityService {
+@Service("schoolService")
+public class SchoolServiceImpl implements SchoolService {
+
     @Autowired
-    AuthorityRepository authorityRepository;
+    SchoolRepository schoolRepository;
 
     @Autowired
     UserRepository userRepository;
 
     @Override
-    public List<AuthorityModel> getAuthorityBySelf() {
+    public SchoolModel getSchoolBySelf() {
+
         JwtUser jwtUser = (JwtUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<User> user = userRepository.findById(jwtUser.getId());
         if (user.isPresent()) {
             List<User> users = new ArrayList<>();
             users.add(user.get());
-             return authorityRepository.findAllByUsers(users);
+            return schoolRepository.findByUsers(users);
+        }
+        return null;
+    }
+
+    @Override
+    public SchoolModel createNewSchool(SchoolModel schoolModel) {
+        return schoolRepository.save(schoolModel);
+    }
+
+    @Override
+    public SchoolModel getSchoolById(long id) {
+        Optional<SchoolModel> schoolModel =  schoolRepository.findById(id);
+        if(schoolModel.isPresent()){
+            return schoolModel.get();
         }
         return null;
     }

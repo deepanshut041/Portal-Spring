@@ -1,10 +1,12 @@
 package in.futurastic.portal.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import in.futurastic.portal.model.auth.User;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Entity
 public class SchoolModel {
@@ -13,15 +15,37 @@ public class SchoolModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private String logo_image;
+
+    @NotNull
     private String address;
+
+    @NotNull
     private String email;
+
+    @NotNull
     private long phone;
+
+    @NotNull
     private String code;
+
+    @NotNull
     private String colorPrimary;
+
+    @NotNull
     private String colorSecondary;
+
+    @NotNull
     private String colorAccent;
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "schoolModel", fetch = FetchType.LAZY)
+    private Set<User> users;
 
     public SchoolModel() {
     }
@@ -104,5 +128,13 @@ public class SchoolModel {
 
     public void setColorAccent(String colorAccent) {
         this.colorAccent = colorAccent;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

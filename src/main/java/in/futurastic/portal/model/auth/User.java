@@ -1,5 +1,9 @@
 package in.futurastic.portal.model.auth;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import in.futurastic.portal.model.SchoolModel;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -39,6 +43,8 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private List<AuthorityModel> authorities;
 
+    @ManyToOne
+    private SchoolModel schoolModel;
 
     public User() {
     }
@@ -91,4 +97,13 @@ public class User {
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
+    @JsonIgnore
+    public SchoolModel getSchoolModel() {
+        return schoolModel;
+    }
+
+    @JsonProperty("school")
+    public void setSchoolModel(SchoolModel schoolModel) {
+        this.schoolModel = schoolModel;
+    }
 }

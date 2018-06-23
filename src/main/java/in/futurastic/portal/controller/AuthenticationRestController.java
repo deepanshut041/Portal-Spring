@@ -59,7 +59,7 @@ public class AuthenticationRestController {
     }
 
     @RequestMapping(value = "/auth/signup", method = RequestMethod.POST)
-    public User createNewUser(@RequestBody User user){
+    public User createNewUser(@RequestBody User user, HttpServletRequest httpServletRequest){
 
         User saved = userService.saveUser(user);
 

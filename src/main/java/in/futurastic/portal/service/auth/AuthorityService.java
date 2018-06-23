@@ -5,6 +5,6 @@ import in.futurastic.portal.model.auth.AuthorityModel;
 import java.util.List;
 
 public interface AuthorityService {
-    List<AuthorityModel> getAuthorityByUsername();
+    List<AuthorityModel> getAuthorityBySelf();
 
 }
