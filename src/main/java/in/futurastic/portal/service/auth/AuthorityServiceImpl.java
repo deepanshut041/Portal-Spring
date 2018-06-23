@@ -32,4 +32,14 @@ public class AuthorityServiceImpl implements AuthorityService {
         }
         return null;
     }
+
+    @Override
+    public AuthorityModel addAuthority(AuthorityModel authorityModel) {
+        return authorityRepository.save(authorityModel);
+    }
+
+    @Override
+    public List<AuthorityModel> getAllAuthority() {
+        return authorityRepository.findAll();
+    }
 }

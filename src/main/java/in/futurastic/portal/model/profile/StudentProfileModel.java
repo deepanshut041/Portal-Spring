@@ -1,9 +1,9 @@
 package in.futurastic.portal.model.profile;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import in.futurastic.portal.model.auth.User;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -41,6 +41,9 @@ public class StudentProfileModel {
     private long motherAadharNumber;
     private int pin;
     private Date dateOfBirth;
+
+    @OneToOne
+    private User user;
 
     public StudentProfileModel() {
     }
@@ -291,5 +294,14 @@ public class StudentProfileModel {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @JsonIgnore
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

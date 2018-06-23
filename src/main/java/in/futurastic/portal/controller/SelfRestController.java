@@ -2,15 +2,21 @@ package in.futurastic.portal.controller;
 
 import in.futurastic.portal.model.SchoolModel;
 import in.futurastic.portal.model.auth.AuthorityModel;
+import in.futurastic.portal.model.auth.User;
+import in.futurastic.portal.model.profile.StaffProfileModel;
+import in.futurastic.portal.model.profile.StudentProfileModel;
 import in.futurastic.portal.service.SchoolService;
 import in.futurastic.portal.service.auth.AuthorityService;
+import in.futurastic.portal.service.auth.UserService;
 import in.futurastic.portal.util.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -30,32 +36,34 @@ public class SelfRestController {
     private SchoolService schoolService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     @Qualifier("jwtUserDetailsService")
     private UserDetailsService userDetailsService;
-
-//    @RequestMapping(value = "/profile/student", method = RequestMethod.GET)
-//    public JwtUser getProfileStudentUser(HttpServletRequest request) {
-//        String token = request.getHeader(tokenHeader).substring(7);
-//        String username = jwtTokenUtil.getUsernameFromToken(token);
-//        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-//        return user;
-//    }
-
-//    @RequestMapping(value = "/menu", method = RequestMethod.GET)
-//    public JwtUser getMenuAuthenticatedUser(HttpServletRequest request) {
-//        String token = request.getHeader(tokenHeader).substring(7);
-//        String username = jwtTokenUtil.getUsernameFromToken(token);
-//        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-//        return user;
-//    }
 
     @RequestMapping(value = "/roles", method = RequestMethod.GET)
     public List<AuthorityModel> getAuthoritiesUser(){
         return authorityService.getAuthorityBySelf();
     }
 
+    @RequestMapping(value = {"/", ""}, method = RequestMethod.GET)
+    public User getSelf(){
+        return userService.getSelf();
+    }
+
     @RequestMapping(value = "/school", method = RequestMethod.GET)
     public SchoolModel getSchoolUser(){
         return schoolService.getSchoolBySelf();
+    }
+
+    @RequestMapping(value = "/profile/student", method = RequestMethod.GET)
+    public StudentProfileModel  getStudentProfile(){
+        return null;
+    }
+
+    @RequestMapping(value = "/profile/staff", method = RequestMethod.GET)
+    public StaffProfileModel getStaffProfile(){
+        return null;
     }
 }

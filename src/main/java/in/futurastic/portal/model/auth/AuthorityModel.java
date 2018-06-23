@@ -1,6 +1,8 @@
 package in.futurastic.portal.model.auth;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -19,6 +21,7 @@ public class AuthorityModel {
     private String name;
 
     @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<User> users;
 
     public Long getId() {

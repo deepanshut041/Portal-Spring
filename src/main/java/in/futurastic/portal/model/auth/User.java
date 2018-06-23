@@ -2,7 +2,10 @@ package in.futurastic.portal.model.auth;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import in.futurastic.portal.model.SchoolModel;
+import in.futurastic.portal.model.profile.StaffProfileModel;
+import in.futurastic.portal.model.profile.StudentProfileModel;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -46,6 +49,12 @@ public class User {
     @ManyToOne
     private SchoolModel schoolModel;
 
+    @OneToOne
+    private StudentProfileModel studentProfileModel;
+
+    @OneToOne
+    private StaffProfileModel staffProfileModel;
+
     public User() {
     }
 
@@ -65,6 +74,7 @@ public class User {
         this.username = username;
     }
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     public String getPassword() {
         return password;
     }
@@ -97,7 +107,6 @@ public class User {
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
-    @JsonIgnore
     public SchoolModel getSchoolModel() {
         return schoolModel;
     }
@@ -105,5 +114,23 @@ public class User {
     @JsonProperty("school")
     public void setSchoolModel(SchoolModel schoolModel) {
         this.schoolModel = schoolModel;
+    }
+
+    public StudentProfileModel getStudentProfileModel() {
+        return studentProfileModel;
+    }
+
+    @JsonProperty("student")
+    public void setStudentProfileModel(StudentProfileModel studentProfileModel) {
+        this.studentProfileModel = studentProfileModel;
+    }
+
+    public StaffProfileModel getStaffProfileModel() {
+        return staffProfileModel;
+    }
+
+    @JsonProperty("staff")
+    public void setStaffProfileModel(StaffProfileModel staffProfileModel) {
+        this.staffProfileModel = staffProfileModel;
     }
 }
