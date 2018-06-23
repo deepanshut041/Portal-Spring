@@ -42,4 +42,9 @@ public class AuthorityServiceImpl implements AuthorityService {
     public List<AuthorityModel> getAllAuthority() {
         return authorityRepository.findAll();
     }
+
+    @Override
+    public List<AuthorityModel> getAuthorityByName(String name) {
+        return authorityRepository.findAllByName(name);
+    }
 }

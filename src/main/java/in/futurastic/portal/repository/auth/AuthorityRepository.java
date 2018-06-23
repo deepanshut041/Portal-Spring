@@ -10,5 +10,6 @@ import java.util.List;
 
 public interface AuthorityRepository extends JpaRepository<AuthorityModel, Long> {
     List<AuthorityModel> findAllByUsers(List<User> users);
+    List<AuthorityModel> findAllByName(String name);
 }
 

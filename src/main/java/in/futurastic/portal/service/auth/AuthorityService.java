@@ -8,5 +8,6 @@ public interface AuthorityService {
     List<AuthorityModel> getAuthorityBySelf();
     AuthorityModel addAuthority(AuthorityModel authorityModel);
     List<AuthorityModel> getAllAuthority();
+    List<AuthorityModel> getAuthorityByName(String name);
 
 }

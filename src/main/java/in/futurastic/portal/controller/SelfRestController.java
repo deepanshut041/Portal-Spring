@@ -38,10 +38,6 @@ public class SelfRestController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    @Qualifier("jwtUserDetailsService")
-    private UserDetailsService userDetailsService;
-
     @RequestMapping(value = "/roles", method = RequestMethod.GET)
     public List<AuthorityModel> getAuthoritiesUser(){
         return authorityService.getAuthorityBySelf();
@@ -55,15 +51,5 @@ public class SelfRestController {
     @RequestMapping(value = "/school", method = RequestMethod.GET)
     public SchoolModel getSchoolUser(){
         return schoolService.getSchoolBySelf();
-    }
-
-    @RequestMapping(value = "/profile/student", method = RequestMethod.GET)
-    public StudentProfileModel  getStudentProfile(){
-        return null;
-    }
-
-    @RequestMapping(value = "/profile/staff", method = RequestMethod.GET)
-    public StaffProfileModel getStaffProfile(){
-        return null;
     }
 }
