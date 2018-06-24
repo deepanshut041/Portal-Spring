@@ -1,9 +1,12 @@
 package in.futurastic.portal.model.grade;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import in.futurastic.portal.model.session.ClassSession;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class ClassModel {
 
     @Id
@@ -11,6 +14,10 @@ public class ClassModel {
     private long id;
     private String name;
     private String section;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "classModel")
+    private List<ClassSession> classSessions;
 
     public ClassModel() {
     }
@@ -37,5 +44,13 @@ public class ClassModel {
 
     public void setSection(String section) {
         this.section = section;
+    }
+
+    public List<ClassSession> getClassSessions() {
+        return classSessions;
+    }
+
+    public void setClassSessions(List<ClassSession> classSessions) {
+        this.classSessions = classSessions;
     }
 }

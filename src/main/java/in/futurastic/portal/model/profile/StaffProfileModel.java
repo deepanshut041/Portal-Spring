@@ -2,9 +2,11 @@ package in.futurastic.portal.model.profile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import in.futurastic.portal.model.auth.User;
+import in.futurastic.portal.model.session.ClassSession;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class StaffProfileModel {
@@ -27,6 +29,10 @@ public class StaffProfileModel {
     private int pin;
     private Date dateOfBirth;
     private Date dateOfHiring;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "staffProfileModel")
+    private List<ClassSession> classSessions;
 
     @OneToOne
     private User user;
@@ -169,5 +175,13 @@ public class StaffProfileModel {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<ClassSession> getClassSessions() {
+        return classSessions;
+    }
+
+    public void setClassSessions(List<ClassSession> classSessions) {
+        this.classSessions = classSessions;
     }
 }

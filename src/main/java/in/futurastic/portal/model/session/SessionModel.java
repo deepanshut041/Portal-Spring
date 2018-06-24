@@ -1,11 +1,11 @@
 package in.futurastic.portal.model.session;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class SessionModel {
@@ -21,6 +21,10 @@ public class SessionModel {
 
     @NotNull
     private boolean status;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "sessionModel")
+    private List<ClassSession> classSessions;
 
     public SessionModel() {
     }
@@ -55,5 +59,13 @@ public class SessionModel {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public List<ClassSession> getClassSessions() {
+        return classSessions;
+    }
+
+    public void setClassSessions(List<ClassSession> classSessions) {
+        this.classSessions = classSessions;
     }
 }
