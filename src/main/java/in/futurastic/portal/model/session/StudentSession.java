@@ -15,8 +15,7 @@ public class StudentSession {
     
     @ManyToOne
     private StudentSession studentSession;
-    
-    @ManyToOne
+
     private Date enrolledAt;
 
     public StudentSession() {

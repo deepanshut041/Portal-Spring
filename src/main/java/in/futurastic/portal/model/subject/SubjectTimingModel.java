@@ -19,12 +19,10 @@ public class SubjectTimingModel {
     private SubjectSession subjectSession;
 
     @DateTimeFormat(pattern="hh:mm:ss" )
-    @Temporal(TemporalType.TIME)
     @NotNull
     private Time startTime;
 
     @DateTimeFormat(pattern="hh:mm:ss" )
-    @Temporal(TemporalType.TIME)
     @NotNull
     private Time endTime;
 
