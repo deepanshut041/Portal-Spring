@@ -48,4 +48,15 @@ public class SchoolServiceImpl implements SchoolService {
         }
         return null;
     }
+
+    @Override
+    public SchoolModel updateSchool(long id, SchoolModel schoolModel) {
+        Optional<SchoolModel> school = schoolRepository.findById(id);
+        if (school.isPresent()){
+            schoolModel.setId(school.get().getId());
+            return schoolRepository.save(schoolModel);
+        }
+        return null;
+
+    }
 }

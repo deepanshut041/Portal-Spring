@@ -43,11 +43,12 @@ public class ClassSessionController {
     @RequestMapping(value = "/session/{id}", method = RequestMethod.GET)
     List<ClassSession> getClassSessionByStaff(@PathVariable int id){
 
-        return classSessionService.getClassSessionByStaff();
+//        return classSessionService.getClassSessionByStaff();
+        return null;
     }
-
-    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
-    List<ClassSession> getClassSession(){
-        return classSessionService.getAllClassSession();
-    }
+//
+//    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
+//    List<ClassSession> getClassSession(){
+//        return classSessionService.getAllClassSession();
+//    }
 }

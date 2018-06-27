@@ -6,4 +6,5 @@ public interface SchoolService {
     SchoolModel getSchoolBySelf();
     SchoolModel createNewSchool(SchoolModel schoolModel);
     SchoolModel getSchoolById(long id);
+    SchoolModel updateSchool(long id, SchoolModel schoolModel);
 }
